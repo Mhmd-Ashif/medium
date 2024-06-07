@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "name": "@ashif18/medium-common",
+  "version": "6.1.0",
+  "main": "dist/zod.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
