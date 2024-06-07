@@ -45,15 +45,6 @@ export function Blogs() {
               />
             </Link>
           ))}
-          <BlogCard
-            author={"anonymous"}
-            title={"testing"}
-            content={"testing"}
-            thumbnail={
-              "https://ashifmedium.s3.amazonaws.com/fullmetal-alchemist.png"
-            }
-            createdAt={"2024-04-02"}
-          />
         </div>
       </>
     );
