@@ -4,19 +4,12 @@ import { Avatar } from "./Avatar";
 interface blogFull {
   title: string;
   content: string;
-  thumbnail: string;
   updatedAt: string;
   id?: number;
   author: { username: string };
 }
 
-export function BlogFull({
-  title,
-  content,
-  thumbnail,
-  updatedAt,
-  author,
-}: blogFull) {
+export function BlogFull({ title, content, updatedAt, author }: blogFull) {
   const { day, month, year } = useDate(updatedAt);
   return (
     <>

@@ -1,6 +1,5 @@
 import { useDate } from "../hooks/hooks";
 import { Avatar } from "./Avatar";
-import parse from "html-react-parser";
 
 interface blogcard {
   author: string;
@@ -10,13 +9,7 @@ interface blogcard {
   createdAt: string;
 }
 
-export function BlogCard({
-  author,
-  title,
-  content,
-  thumbnail,
-  createdAt,
-}: blogcard) {
+export function BlogCard({ author, title, thumbnail, createdAt }: blogcard) {
   const { day, month, year } = useDate(createdAt);
   return (
     <>

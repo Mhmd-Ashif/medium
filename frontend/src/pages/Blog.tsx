@@ -23,7 +23,6 @@ export function Blog() {
           <BlogFull
             title={blog.title}
             content={blog.content}
-            thumbnail={blog.thumbnail}
             updatedAt={blog.updatedAt}
             author={blog.author}
           />

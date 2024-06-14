@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AppBar } from "../components/AppBar";
 import { CreatePostSchema } from "@ashif18/medium-common";
-import axios, { all } from "axios";
+import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { Jodit } from "jodit-react";
@@ -41,7 +41,7 @@ export function PostBlog({
       },
     });
     const editorElement = document.querySelector(".jodit-wysiwyg");
-    editorElement.classList.add("all", "unset");
+    editorElement?.classList.add("all", "unset");
     joditInstance.setEditorValue(blog.content);
     JoditRef.current = joditInstance;
     joditInstance.events.on("change", (newContent) => {
