@@ -96,7 +96,7 @@ export function useMe() {
   useEffect(() => {
     async function me() {
       try {
-        const result = await axios.get(`${BACKEND_URL}/api/v1/user/me`, {
+        await axios.get(`${BACKEND_URL}/api/v1/user/me`, {
           headers: { Authorization: localStorage.getItem("token") },
         });
         navigate("/blogs");
