@@ -15,8 +15,9 @@
   }
 
   iframe {
-    width: auto;
-    height: auto;
+    width: 100%;
+    min-height: 500px;
+    border: none;
   }
 
   html {
