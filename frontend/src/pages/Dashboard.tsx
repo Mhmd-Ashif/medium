@@ -36,8 +36,6 @@ export function Dashboard() {
     );
   }
 
-  console.log(blogs.length);
-
   return (
     <>
       <AppBar />
@@ -48,17 +46,19 @@ export function Dashboard() {
             {blogs.map((blog: blog) => {
               return (
                 <>
-                  <div className="relative md:flex md:justify-center md:items-center gap-2 ">
-                    <Link to={`/blog/${blog.id}`}>
-                      <BlogCard
-                        key={blog.id}
-                        title={blog.title}
-                        content={blog.content}
-                        author={localStorage.getItem("username") || "You"}
-                        thumbnail={blog.thumbnail}
-                        createdAt={blog.updatedAt}
-                      />
-                    </Link>
+                  <div className="relative md:flex md md:items-center gap-2 ">
+                    <div className="w-full">
+                      <Link to={`/blog/${blog.id}`}>
+                        <BlogCard
+                          key={blog.id}
+                          title={blog.title}
+                          content={blog.content}
+                          author={localStorage.getItem("username") || "You"}
+                          thumbnail={blog.thumbnail}
+                          createdAt={blog.updatedAt}
+                        />
+                      </Link>
+                    </div>
                     <UpdateBtn
                       key={blog.id}
                       onClick={() => {

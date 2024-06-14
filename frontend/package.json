@@ -11,18 +11,24 @@
   },
   "dependencies": {
     "@ashif18/medium-common": "^1.0.0",
+    "@editorjs/editorjs": "^2.29.1",
     "@types/axios": "^0.14.0",
     "@udecode/plate-common": "^33.0.4",
     "axios": "^1.7.2",
     "babel-polyfill": "^6.26.0",
     "draft-js": "^0.11.7",
+    "html-react-parser": "^5.1.10",
+    "jodit-react": "^4.1.2",
+    "postcss-cli": "^11.0.0",
+    "postcss-prefix-selector": "^1.16.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
     "slate": "^0.103.0",
     "slate-history": "^0.100.0",
     "slate-hyperscript": "^0.100.0",
-    "slate-react": "^0.104.0"
+    "slate-react": "^0.104.0",
+    "tailwindcss-all": "^0.0.2"
   },
   "devDependencies": {
     "@types/draft-js": "^0.11.18",

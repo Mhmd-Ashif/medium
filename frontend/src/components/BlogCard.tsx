@@ -1,5 +1,6 @@
 import { useDate } from "../hooks/hooks";
 import { Avatar } from "./Avatar";
+import parse from "html-react-parser";
 
 interface blogcard {
   author: string;
@@ -27,9 +28,9 @@ export function BlogCard({
       </div>
       <div className="flex flex-col md:flex-row h-fit p-5 pt-0 gap-8 items-center justify-between border-b border-slate-200">
         <div className="order-2 md:order-1">
-          <div className="text-black text-2xl mb-2 font-bold">{title}</div>
+          <div className="text-black text-2xl mb-2 font-bold ">{title}</div>
           <div className="text-gray-700 text-md font-serif">
-            {content.slice(0, 150) + "..."}
+            {title.slice(0, 40) + " ... See more ..."}
           </div>
           <div className="mt-1 text-sm text-gray-500">{`${Math.ceil(
             title.length / 100

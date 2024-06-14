@@ -51,7 +51,7 @@ export function AvatarBUG() {
             className="py-2 text-sm text-gray-700"
             aria-labelledby="dropdownInformationButton"
           >
-            <li>
+            <li className="list-none	">
               <Link
                 to="/post"
                 className="flex justify-between px-4 py-2 hover:bg-gray-100 "
@@ -73,7 +73,7 @@ export function AvatarBUG() {
                 </svg>
               </Link>
             </li>
-            <li>
+            <li className="list-none	">
               <Link
                 to="/dashboard"
                 className="flex justify-between px-4 py-2 hover:bg-gray-100"
