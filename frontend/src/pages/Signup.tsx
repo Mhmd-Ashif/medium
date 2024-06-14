@@ -5,7 +5,7 @@ export function Signup() {
   return (
     <>
       <div className="block md:flex md:flex-row ">
-        <div className="h-0 w-fit md:w-screen block">
+        <div className="h-0 w-fit md:w-screen block ">
           <SignUpSide></SignUpSide>
         </div>
         <div className="invisible md:w-screen  md:visible">
