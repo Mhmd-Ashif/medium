@@ -15,6 +15,16 @@ export function Blog() {
         <BlogSkeleton />
       </>
     );
+  }
+  if (!blog) {
+    return (
+      <>
+        <AppBar />
+        <div className="mt-8 md:mt-12 w-11/12 container mx-auto">
+          <p>Blog not found.</p>
+        </div>
+      </>
+    );
   } else {
     return (
       <>

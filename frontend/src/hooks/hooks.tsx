@@ -3,8 +3,17 @@ import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
+interface blog {
+  title: string;
+  content: string;
+  thumbnail: string | undefined;
+  updatedAt: string;
+  id: number;
+  author: { username: string };
+}
+
 export function useBlog({ id }: { id: number }) {
-  const [blog, setBlog] = useState();
+  const [blog, setBlog] = useState<blog | undefined>();
   const [loading, isLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +27,6 @@ export function useBlog({ id }: { id: number }) {
         const post = await blog.data.post;
         setBlog(post);
         isLoading(false);
-        console.log(post);
       } catch (error) {
         alert("Post Doesn't exist");
       }
@@ -91,7 +99,6 @@ export function useMe() {
         const result = await axios.get(`${BACKEND_URL}/api/v1/user/me`, {
           headers: { Authorization: localStorage.getItem("token") },
         });
-        console.log(result);
         navigate("/blogs");
       } catch (error) {
         navigate("/signup");
