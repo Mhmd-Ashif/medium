@@ -21,7 +21,7 @@ export function Blog() {
       <>
         <AppBar />
         <div className="mt-8 md:mt-12 w-11/12 container mx-auto">
-          <p>Blog not found.</p>
+          <p className="text-5xl font-bold text-center">Blog didn't exist.</p>
         </div>
       </>
     );

@@ -4,8 +4,8 @@ import { SignInSide } from "../components/SignIn";
 export function Signin() {
   return (
     <>
-      <div className="block md:flex md:flex-row ">
-        <div className="h-0 md:w-screen block">
+      <div className="block md:flex md:flex-row">
+        <div className="h-0 w-fit md:w-screen block">
           <SignInSide></SignInSide>
         </div>
         <div className="invisible md:w-screen  md:visible">
