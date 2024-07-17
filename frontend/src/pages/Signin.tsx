@@ -6,7 +6,7 @@ export function Signin() {
     <>
       <div className="block md:flex md:flex-row">
         <div className="h-0 w-fit md:w-screen block">
-          <SignInSide></SignInSide>
+          <SignInSide value={"Sign In"}></SignInSide>
         </div>
         <div className="invisible md:w-screen  md:visible">
           <Quote

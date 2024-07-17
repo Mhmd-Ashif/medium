@@ -7,8 +7,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 
-export function SignUpSide() {
+export function SignUpSide({ value }: { value: string }) {
   const navigate = useNavigate();
+
+  const [popup, setpopup] = useState<boolean>(true);
 
   const [signup, setSignUp] = useState<SignUp>({
     username: "",
@@ -18,6 +20,10 @@ export function SignUpSide() {
 
   async function signUpUser() {
     try {
+      document.getElementsByTagName("button")[0].innerText = "Logging in ...";
+      document
+        .getElementsByTagName("button")[0]
+        .classList.add("cursor-progress");
       const result = await axios.post(
         `${BACKEND_URL}/api/v1/user/signup`,
         signup
@@ -26,9 +32,19 @@ export function SignUpSide() {
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("username", result.data.username);
       localStorage.setItem("email", result.data.email);
-      navigate("/blogs");
+      setTimeout(() => {
+        navigate("/blogs");
+      }, 100);
     } catch (error: any) {
-      alert(error.response.data.msg || error.response.data.prismaError);
+      document
+        .getElementsByTagName("button")[0]
+        .classList.remove("cursor-progress");
+      setpopup(false);
+      document.getElementsByTagName("button")[0].innerText = `${value}`;
+      document.getElementsByTagName("span")[0].innerText = ` ${
+        (await error.response.data.msg) ||
+        (await error.response.data.prismaError)
+      }`;
     }
   }
 
@@ -74,7 +90,18 @@ export function SignUpSide() {
             }));
           }}
         ></Input>
-        <Btn value={"Sign Up"} onClick={signUpUser}></Btn>
+        <Btn onClick={signUpUser}>{value}</Btn>
+        {popup ? (
+          ""
+        ) : (
+          <div
+            className="popup p-4 m-4 text-sm text-red-800 rounded-lg bg-red-50 "
+            role="alert"
+          >
+            <span className="font-medium">Valid Details please</span>{" "}
+            <span>-- Error Occured</span>
+          </div>
+        )}
       </div>
     </>
   );

@@ -13,6 +13,7 @@ interface blog {
 }
 
 export function useBlog({ id }: { id: number }) {
+  const navigate = useNavigate();
   const [blog, setBlog] = useState<blog | undefined>();
   const [loading, isLoading] = useState(true);
 
@@ -28,7 +29,7 @@ export function useBlog({ id }: { id: number }) {
         setBlog(post);
         isLoading(false);
       } catch (error) {
-        alert("Post Doesn't exist");
+        return false;
       }
     }
     getBlog();
@@ -37,6 +38,7 @@ export function useBlog({ id }: { id: number }) {
 }
 
 export function useBlogs() {
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, isLoading] = useState(true);
   // use effect to get the blog
@@ -53,7 +55,7 @@ export function useBlogs() {
         });
         isLoading(false);
       } catch (error) {
-        alert("Unauthorized User");
+        navigate("/signin");
       }
     }
     getBlogs();
@@ -70,6 +72,7 @@ export function useDate(createdAt: string) {
 }
 
 export function individualBlogs() {
+  const navigate = useNavigate();
   const [loading, isLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
@@ -83,7 +86,7 @@ export function individualBlogs() {
         setBlogs(result.data.posts.reverse());
         isLoading(false);
       } catch (error) {
-        alert("UnAuthorized User");
+        navigate("/signin");
       }
     }
     IndividualBlog();
