@@ -6,7 +6,6 @@ import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { Jodit } from "jodit-react";
 import "../unreset.css";
-import { Btn } from "../components/Btn";
 
 export function PostBlog({
   id,

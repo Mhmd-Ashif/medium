@@ -13,7 +13,6 @@ interface blog {
 }
 
 export function useBlog({ id }: { id: number }) {
-  const navigate = useNavigate();
   const [blog, setBlog] = useState<blog | undefined>();
   const [loading, isLoading] = useState(true);
 
