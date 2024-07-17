@@ -15,7 +15,6 @@ export function SignInSide({ value }: { value: string }) {
     password: "",
   });
   const [popup, setpopup] = useState<boolean>(true);
-  const [errormsg, setErrorMsg] = useState<string>();
   const Button = document.getElementsByTagName("button")[0];
 
   async function signInUser() {
@@ -40,11 +39,11 @@ export function SignInSide({ value }: { value: string }) {
         .classList.remove("cursor-progress");
       setpopup(false);
       document.getElementsByTagName("button")[0].innerText = `${value}`;
-      setErrorMsg(
+
+      document.getElementsByTagName("span")[0].innerText = `${
         (await error.response.data.msg) ||
-          (await error.response.data.prismaError)
-      );
-      document.getElementsByTagName("span")[0].innerText = `${errormsg}`;
+        (await error.response.data.prismaError)
+      }`;
     }
   }
 
