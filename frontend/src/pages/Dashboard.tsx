@@ -20,7 +20,6 @@ interface blog {
 export function Dashboard() {
   const { blogs, loading } = individualBlogs();
   const navigate = useNavigate();
-  const Delete = document.getElementById("deletemodal");
   if (loading) {
     return (
       <>
@@ -81,7 +80,9 @@ export function Dashboard() {
                             }
                           );
                           console.log(result.data);
-                          Delete?.classList.remove("hidden");
+                          document
+                            .getElementById("deletemodal")
+                            ?.classList.remove("hidden");
                           setTimeout(() => {
                             navigate("/blogs");
                           }, 2000);
