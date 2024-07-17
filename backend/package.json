@@ -7,7 +7,9 @@
     "@ashif18/medium-common": "^6.1.0",
     "@prisma/client": "^5.14.0",
     "@prisma/extension-accelerate": "^1.0.0",
+    "@types/multer": "^1.4.11",
     "hono": "^4.3.7",
+    "multer": "^1.4.5-lts.1",
     "prisma": "^5.14.0",
     "zod": "^3.23.8"
   },

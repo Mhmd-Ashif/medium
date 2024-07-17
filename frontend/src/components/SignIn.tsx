@@ -7,16 +7,23 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 
-export function SignInSide() {
+export function SignInSide({ value }: { value: string }) {
   const navigate = useNavigate();
 
   const [signin, setSignIn] = useState<SignIn>({
     username: "",
     password: "",
   });
+  const [popup, setpopup] = useState<boolean>(true);
+  const [errormsg, setErrorMsg] = useState<string>();
+  const Button = document.getElementsByTagName("button")[0];
 
   async function signInUser() {
     try {
+      Button.innerHTML = `Logging in ... `;
+      document
+        .getElementsByTagName("button")[0]
+        .classList.add("cursor-progress");
       const result = await axios.post(
         `${BACKEND_URL}/api/v1/user/signin`,
         signin
@@ -24,10 +31,20 @@ export function SignInSide() {
       localStorage.setItem("token", result.data.token);
       localStorage.setItem("username", result.data.username);
       localStorage.setItem("email", result.data.email);
-
-      navigate("/blogs");
+      setTimeout(() => {
+        navigate("/blogs");
+      }, 100);
     } catch (error: any) {
-      alert(error.response.data.msg);
+      document
+        .getElementsByTagName("button")[0]
+        .classList.remove("cursor-progress");
+      setpopup(false);
+      document.getElementsByTagName("button")[0].innerText = `${value}`;
+      setErrorMsg(
+        (await error.response.data.msg) ||
+          (await error.response.data.prismaError)
+      );
+      document.getElementsByTagName("span")[0].innerText = `${errormsg}`;
     }
   }
 
@@ -62,7 +79,18 @@ export function SignInSide() {
             }));
           }}
         ></Input>
-        <Btn value={"Sign In"} onClick={signInUser}></Btn>
+        <Btn onClick={signInUser}>{value}</Btn>
+        {popup ? (
+          ""
+        ) : (
+          <div
+            className="p-4 m-4 text-sm text-red-800 rounded-lg bg-red-50 "
+            role="alert"
+          >
+            <span className="font-medium">Enter Valid Details</span>
+            <span> -- Error Occured</span>
+          </div>
+        )}
       </div>
     </>
   );
