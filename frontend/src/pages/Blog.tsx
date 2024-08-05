@@ -4,6 +4,8 @@ import { BlogFull } from "../components/BlogFull";
 import { AppBar } from "../components/AppBar";
 import { BlogSkeleton } from "../components/BlogSkeleton";
 import { Btn } from "../components/Btn";
+import { useRecoilValue } from "recoil";
+import { allBlogs } from "../store";
 
 export function Blog() {
   const navigate = useNavigate();
@@ -11,14 +13,17 @@ export function Blog() {
   const { blog, loading } = useBlog({
     id: Number(id),
   });
-  if (loading == true) {
+  const Blog = useRecoilValue(allBlogs);
+  const indBlog = Blog.filter((blog: any) => blog.id == id);
+
+  if (!Blog.length && loading == true) {
     return (
       <>
         <BlogSkeleton />
       </>
     );
   }
-  if (!blog) {
+  if (!indBlog[0]) {
     return (
       <>
         <AppBar />
@@ -54,10 +59,10 @@ export function Blog() {
         <AppBar />
         <div className="mt-8 md:mt-12 w-11/12 container mx-auto">
           <BlogFull
-            title={blog.title}
-            content={blog.content}
-            updatedAt={blog.updatedAt}
-            author={blog.author}
+            title={indBlog[0].title}
+            content={indBlog[0].content}
+            updatedAt={indBlog[0].updatedAt}
+            author={indBlog[0].author}
           />
         </div>
       </>
