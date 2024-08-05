@@ -7,14 +7,21 @@ import { Btn } from "../components/Btn";
 import { useRecoilValue } from "recoil";
 import { allBlogs } from "../store";
 
+interface Blog {
+  title: string;
+  content: string;
+  updatedAt: Date;
+  author: { username: string };
+}
+
 export function Blog() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { blog, loading } = useBlog({
+  const { loading } = useBlog({
     id: Number(id),
   });
   const Blog = useRecoilValue(allBlogs);
-  const indBlog = Blog.filter((blog: any) => blog.id == id);
+  const indBlog: Blog[] = Blog.filter((blog: any) => blog.id == id);
 
   if (!Blog.length && loading == true) {
     return (
@@ -61,7 +68,7 @@ export function Blog() {
           <BlogFull
             title={indBlog[0].title}
             content={indBlog[0].content}
-            updatedAt={indBlog[0].updatedAt}
+            updatedAt={indBlog[0].updatedAt.toString()}
             author={indBlog[0].author}
           />
         </div>
