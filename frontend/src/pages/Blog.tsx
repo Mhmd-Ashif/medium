@@ -4,7 +4,6 @@ import { BlogFull } from "../components/BlogFull";
 import { AppBar } from "../components/AppBar";
 import { BlogSkeleton } from "../components/BlogSkeleton";
 import { Btn } from "../components/Btn";
-import { useRecoilValue } from "recoil";
 
 interface Blog {
   title: string;
