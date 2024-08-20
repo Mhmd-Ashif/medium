@@ -5,7 +5,6 @@ import { AppBar } from "../components/AppBar";
 import { BlogSkeleton } from "../components/BlogSkeleton";
 import { Btn } from "../components/Btn";
 import { useRecoilValue } from "recoil";
-import { allBlogs } from "../store";
 
 interface Blog {
   title: string;
@@ -17,20 +16,18 @@ interface Blog {
 export function Blog() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { loading } = useBlog({
+  const { blog, loading } = useBlog({
     id: Number(id),
   });
-  const Blog = useRecoilValue(allBlogs);
-  const indBlog: Blog[] = Blog.filter((blog: any) => blog.id == id);
 
-  if (!Blog.length && loading == true) {
+  if (loading == true) {
     return (
       <>
         <BlogSkeleton />
       </>
     );
   }
-  if (!indBlog[0]) {
+  if (blog == undefined) {
     return (
       <>
         <AppBar />
@@ -66,10 +63,10 @@ export function Blog() {
         <AppBar />
         <div className="mt-8 md:mt-12 w-11/12 container mx-auto">
           <BlogFull
-            title={indBlog[0].title}
-            content={indBlog[0].content}
-            updatedAt={indBlog[0].updatedAt.toString()}
-            author={indBlog[0].author}
+            title={blog.title}
+            content={blog.content}
+            updatedAt={blog.updatedAt.toString()}
+            author={blog.author}
           />
         </div>
       </>
