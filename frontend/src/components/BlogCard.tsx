@@ -22,8 +22,8 @@ export function BlogCard({ author, title, thumbnail, createdAt }: blogcard) {
       <div className="flex flex-col md:flex-row h-fit p-5 pt-0 gap-8 items-center justify-between border-b border-slate-200">
         <div className="order-2 md:order-1">
           <div className="text-black text-2xl mb-2 font-bold ">{title}</div>
-          <div className="text-gray-700 text-md font-serif">
-            {title.slice(0, 40) + " ... See more ..."}
+          <div className="text-gray-700 text-md font-serif text-wrap">
+            {title + "   ... See more ..."}
           </div>
           <div className="mt-1 text-sm text-gray-500">{`${Math.ceil(
             title.length / 100
