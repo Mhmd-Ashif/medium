@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { allBlogs } from "../store";
 
 interface blog {
   title: string;
@@ -40,6 +42,8 @@ export function useBlogs() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, isLoading] = useState(true);
+  const setBlogsR = useSetRecoilState(allBlogs);
+
   // use effect to get the blog
   useEffect(() => {
     async function getBlogs() {
@@ -49,6 +53,7 @@ export function useBlogs() {
         });
         let blogs = await result.data.allPost;
         blogs = blogs.reverse();
+        setBlogsR(() => blogs.map((blog: any) => blog));
         setBlogs(() => {
           return blogs.map((blog: any) => blog);
         });

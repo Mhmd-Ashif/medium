@@ -3,6 +3,8 @@ import { AppBar } from "../components/AppBar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks/hooks";
 import { Skeleton } from "../components/Skeleton";
+import { useRecoilValue } from "recoil";
+import { allBlogs } from "../store";
 
 interface blog {
   author: { username: string };
@@ -14,8 +16,9 @@ interface blog {
 }
 
 export function Blogs() {
-  const { blogs, loading } = useBlogs();
-  if (loading == true) {
+  const { loading } = useBlogs();
+  const allBlog = useRecoilValue(allBlogs);
+  if (!allBlog.length && loading) {
     return (
       <>
         <div className="pl-2 pr-2 md:pl-36 md:pr-36 mt-14">
@@ -34,7 +37,7 @@ export function Blogs() {
       <>
         <AppBar />
         <div className="pl-2 pr-2 md:pl-36 md:pr-36">
-          {blogs.map((blog: blog) => (
+          {allBlog.map((blog: blog) => (
             <Link to={`/blog/${blog.id}`}>
               <BlogCard
                 author={blog.author.username || "anonymous"}
